@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom';
  
 const Register = () => {
 
@@ -34,6 +34,7 @@ const Register = () => {
   
             if (response.user && response.user.confirmed) {
               console.log("Register Worked!")
+              console.log('User ID: ', response.user.id)
               setRedirect(true)
              
             }
