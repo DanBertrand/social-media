@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import Cookies from 'js-cookie';
+import { useDispatch } from 'react-redux';
+import { LOGIN } from '../../redux/actions/logActions';
 
 const Login = () => {
+
+  const dispatch = useDispatch();
+
   const [identifier, setidentifier] = useState();
   const [password, setPassword] = useState();
   const [redirect, setRedirect] = useState(false);
@@ -31,10 +36,11 @@ const Login = () => {
           console.log(response)
   
             if (response.user && response.user.confirmed) {
-              console.log("logIn Worked!")
-              console.log('User ID: ', response.user.id)
+              console.log("logIn Worked!");
+              console.log('User ID: ', response.user.id);
+              dispatch(LOGIN());
               Cookies.set('token', response.jwt);
-              setRedirect(true)
+              setRedirect(true);
              
             }
             if(response.error){
