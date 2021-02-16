@@ -8,6 +8,7 @@ import Login from '../../pages/login';
 import Cookies from 'js-cookie';
 import { LOGOUT } from '../../redux/actions/logActions';
 import { useDispatch } from 'react-redux';
+import Profil from '../../pages/profil'
 
 const App = () => {
     const dispatch = useDispatch()
@@ -30,6 +31,9 @@ const App = () => {
              </Route>
              <Route path="/login">
                  <Login />
+             </Route>
+             <Route path="/profil">
+                 <Profil />
              </Route>
          </Switch>
      </Router>
