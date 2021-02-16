@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
+import Cookies from 'js-cookie';
  
 const Register = () => {
 
@@ -35,6 +36,7 @@ const Register = () => {
             if (response.user && response.user.confirmed) {
               console.log("Register Worked!")
               console.log('User ID: ', response.user.id)
+              Cookies.set('token', response.jwt);
               setRedirect(true)
              
             }
