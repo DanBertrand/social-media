@@ -1,4 +1,3 @@
-import { logIn, logOut  } from '../actions/logActions'
 import {LOG_IN, LOG_OUT } from '../types/loggedTypes'
 
 const initialState = {
@@ -20,8 +19,6 @@ const loggedReducer = (state = initialState, action) => {
       default:
         return state;
     }
-  
-    return state;
   }
 
   export default loggedReducer

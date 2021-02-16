@@ -1,0 +1,16 @@
+nav{
+    background-color: rgb(49, 49, 49);
+    color: white;
+    min-height: 70px;
+    display: flex;
+    justify-content: space-around;
+    h1{
+        align-items: center;
+    }
+    a {
+        display: flex;
+        button{
+            align-items: center;
+        }
+    }
+}
