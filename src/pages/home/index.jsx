@@ -52,7 +52,6 @@ const Home = () => {
 
   useEffect(()=>{fetchList()}, [newPost])
   
-  console.log(postsList)
 
   return (
     <>
