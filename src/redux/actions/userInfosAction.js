@@ -1,8 +1,10 @@
-import { update } from '../types/userInfosTypes'
+import UPDATE  from '../types/userInfosTypes'
 
-export const UPDATE = (object) => {
+const UP_DATE = (object) => {
     return{
-        type: UP_DATE,
+        type: UPDATE,
         object: object
     }
 }
+
+export default UP_DATE

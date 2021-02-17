@@ -7,11 +7,11 @@ import { createStore, compose,  applyMiddleware, combineReducers } from 'redux';
 import { loggedReducer } from './redux/reducers/loggedReducer';
 import thunkMiddleware from 'redux-thunk';
 import { Provider } from 'react-redux';
-import userInfoReducer from './redux/reducers/userInfoReducer'
+import userInfosReducer from './redux/reducers/userInfosReducer'
 
 const rootReducer = combineReducers({
   loggedReducer: loggedReducer,
-  userInfoReducer: userInfoReducer
+  userInfosReducer: userInfosReducer
 })
  
 const store = createStore(

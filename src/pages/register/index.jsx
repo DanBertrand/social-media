@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import { useDispatch } from 'react-redux';
-import {UPDATE} from '../../redux/actions/userInfosAction'
+import UPDATE from '../../redux/actions/userInfosAction'
+import { LOGIN } from '../../redux/actions/logActions';
 
 const Register = () => {
 
@@ -46,6 +47,7 @@ const Register = () => {
         dispatch(UPDATE(userInfo));
 
         Cookies.set('token', response.jwt);
+        dispatch(LOGIN());
         setRedirect(true)
       }
       if(response.error){

@@ -1,3 +1,3 @@
-const update = 'UPDATE';
+const UPDATE = 'UPDATE';
 
-export default update
+export default UPDATE
