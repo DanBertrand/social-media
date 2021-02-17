@@ -1,11 +1,8 @@
-/* eslint-disable no-unused-vars */
-
-import React, { useDispatch } from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/app/index';
-import { createStore, compose,  applyMiddleware, combineReducers } from 'redux';
+import { createStore,} from 'redux';
 import { loggedReducer } from './redux/reducers/loggedReducer';
-import thunkMiddleware from 'redux-thunk';
+
 import { Provider } from 'react-redux';
 
 const store = createStore(
@@ -14,7 +11,6 @@ const store = createStore(
 )
 
 store.subscribe(() => console.log(store.getState()));
-
 
 ReactDOM.render(
 

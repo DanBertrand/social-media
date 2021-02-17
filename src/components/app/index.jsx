@@ -28,7 +28,6 @@ const App = () => {
           })
           .then((response) => response.json())
           .then((response) => {
-            console.log("RESPONSE", response)
             const userInfo = {
                 id: response.id,
                 username: response.username,

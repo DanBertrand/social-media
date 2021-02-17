@@ -9,11 +9,11 @@ const Register = () => {
 
   const dispatch = useDispatch();
 
-  const [userName, setUserName] = useState();
-  const [password, setPassword] = useState();
-  const [email, setEmail] = useState();
+  const [userName, setUserName] = useState('');
+  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
   const [redirect, setRedirect] = useState(false);
-  const [errors, setErrors] = useState();
+  const [errors, setErrors] = useState('');
   
   const data = {
     username: userName,
