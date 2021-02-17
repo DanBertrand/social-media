@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 const Home = () => {
   const logged = useSelector(state => state.logged);
   const userInfos = useSelector(state => state.userInfos);
-
+ 
   return (
     <>
      <div>Home</div>
