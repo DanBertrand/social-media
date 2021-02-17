@@ -3,7 +3,7 @@ import { Link, Redirect } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import { useDispatch } from 'react-redux';
 import { LOGIN } from '../../redux/actions/logActions';
-import UPDATE from '../../redux/actions/userInfosAction'
+import { UPDATE } from '../../redux/actions/logActions'
 
 const Login = () => {
 

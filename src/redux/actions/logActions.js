@@ -1,15 +1,20 @@
-import { LOG_IN, LOG_OUT } from '../types/loggedTypes'
+import { LOG_IN, LOG_OUT, UP_DATE } from '../types/loggedTypes'
 
-export const LOGIN = (logged) => {
+export const LOGIN = () => {
     return{
-        type: LOG_IN,
-        logged
+        type: LOG_IN
     }
 }
 
-export const  LOGOUT = (logged) => {
+export const  LOGOUT = () => {
     return{
-        type:LOG_OUT,
-        logged
+        type:LOG_OUT
+    }
+}
+
+export const UPDATE = (userInfos) => {
+    return{
+        type: UP_DATE,
+        userInfos
     }
 }

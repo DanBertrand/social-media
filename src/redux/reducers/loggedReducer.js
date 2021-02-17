@@ -1,25 +1,28 @@
-import {LOG_IN, LOG_OUT } from '../types/loggedTypes'
-
-const initialState = {
-  logged: false
-};
-
+import {LOG_IN, LOG_OUT, UP_DATE } from '../types/loggedTypes'
+import initialState from '../initialState';
 
 export const loggedReducer = (state = initialState, action) => {
-    const { type } = action
-    console.log("LOG ACTION: ", action)
-    console.log("LOG STATE: ", state)
+    const { type, userInfos } = action
     switch(type) {
       case LOG_IN:
         return {
-
-            logged: true
+          ...state,
+            logged: true,
         };
       case LOG_OUT:
         return {
-
+          ...state,
             logged: false
         };
+        case UP_DATE:
+          return {
+            ...state,
+            userInfos:{
+              id: userInfos.id,
+              username: userInfos.username,
+              email: userInfos.email
+            }
+          };
       default:
         return state;
     }
