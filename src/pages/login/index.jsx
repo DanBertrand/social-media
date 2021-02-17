@@ -4,16 +4,23 @@ import Cookies from 'js-cookie';
 import { useDispatch } from 'react-redux';
 import { LOGIN } from '../../redux/actions/logActions';
 import { UPDATE } from '../../redux/actions/logActions'
+import LoginForm from '../../components/loginForm/index';
 
 const Login = () => {
-
-  const dispatch = useDispatch();
-
-  const [identifier, setidentifier] = useState();
-  const [password, setPassword] = useState();
-  const [redirect, setRedirect] = useState(false);
-  const [errors, setErrors] = useState();
   
+  const dispatch = useDispatch();
+  
+  const [identifier, setIdentifier] = useState('');
+  const [password, setPassword] = useState('');
+  const [redirect, setRedirect] = useState(false);
+  const [errors, setErrors] = useState('');
+  
+  const handleIdentifier = (e) => {
+    setIdentifier(e)
+  }
+  const handlePassword= (e) => {
+    setPassword(e)
+  }
   const data = {
     identifier: identifier,
     password: password
@@ -33,9 +40,6 @@ const Login = () => {
     .then((response) => response.json())
     .then((response) => {
       if (response.user && response.user.confirmed) {
-
-
-        
         dispatch(LOGIN());
         Cookies.set('token', response.jwt);
         setRedirect(true);
@@ -45,38 +49,31 @@ const Login = () => {
           username: response.user.username,
           email: response.user.email
         }
-
         dispatch(UPDATE(userInfo));
-
-        
       }
       if(response.error){
-        console.log("Failed", response.message[0].messages[0].message)
         setErrors(response.message[0].messages[0].message);
       }
     })    
   }
-    return (
-      <>
-        {errors && <p> {errors} </p>}
-        {redirect ? <Redirect to='/'/> :
-          <>
-            <h2>LOG IN</h2>
-              <form onSubmit={logIn} >
-                <label>User Name</label>
-                <input type="text" value={identifier} onChange={e => setidentifier(e.target.value)} name="userName" ></input><br/>
-                <br/>
-                <label>Password</label>
-                <input type="text" value={password}  onChange={e => setPassword(e.target.value)}  name="password" ></input><br/>
-                <br/>
-                <br/><br/>
-                <button type="submit" onClick={e => logIn(e)} >Submit</button>
-              </form> 
-              <p>No account yet ?</p><Link to="/register" >Create an account</Link>
-          </>
-       }
-      </>
-    );
+
+  return (
+    <>
+      {errors && <p> {errors} </p>}
+      {redirect ? <Redirect to='/'/> :
+      <div>
+        <LoginForm  
+          logIn={logIn} 
+          identifier={identifier} 
+          password={password} 
+          handleIdentifier={handleIdentifier} 
+          handlePassword={handlePassword}
+        />
+        <p>No account yet ?</p><Link to="/register" >Create an account</Link>
+        </div>
+      }
+    </>
+  );
 }
 
 export default Login
