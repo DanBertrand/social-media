@@ -1,19 +1,23 @@
 import {LOG_IN, LOG_OUT } from '../types/loggedTypes'
 
 const initialState = {
-    logged: false
-  };
-  
+  logged: false,
+};
 
-const loggedReducer = (state = initialState, action) => {
+
+export const loggedReducer = (state = initialState, action) => {
     const { type } = action
+    console.log("action: ", action)
+    console.log("state: ", state)
     switch(type) {
       case LOG_IN:
         return {
+
             logged: true
         };
       case LOG_OUT:
         return {
+ 
             logged: false
         };
       default:
@@ -21,4 +25,3 @@ const loggedReducer = (state = initialState, action) => {
     }
   }
 
-  export default loggedReducer

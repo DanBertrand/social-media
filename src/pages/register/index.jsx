@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import Cookies from 'js-cookie';
- 
+import { useDispatch } from 'react-redux';
+import {UPDATE} from '../../redux/actions/userInfosAction'
+
 const Register = () => {
+
+  const dispatch = useDispatch();
 
   const [userName, setUserName] = useState();
   const [password, setPassword] = useState();
@@ -28,9 +32,19 @@ const Register = () => {
     })
     .then((response) => response.json())
     .then((response) => {
+      console.log("REsponse: ", response)
       if (response.user && response.user.confirmed) {
-        console.log("Register Worked!")
+        console.log("Register Worked!", response)
         console.log('User ID: ', response.user.id)
+
+        const userInfo = {
+          id: response.user.id,
+          username: response.user.username,
+          email: response.user.email
+        }
+
+        dispatch(UPDATE(userInfo));
+
         Cookies.set('token', response.jwt);
         setRedirect(true)
       }

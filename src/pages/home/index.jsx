@@ -6,7 +6,7 @@ import { LOGIN } from '../../redux/actions/logActions';
 import { LOGOUT } from '../../redux/actions/logActions';
  
 const Home = ( ) => {
-  const logged = useSelector(state => state.logged);
+  const logged = useSelector(state => state.loggedReducer.logged);
   const dispatch = useDispatch();
     
   const savedSession = () => {
@@ -21,6 +21,8 @@ const Home = ( ) => {
     }
   }
   savedSession()
+
+    console.log("Logged: ", logged)
 
   return (
     <>
