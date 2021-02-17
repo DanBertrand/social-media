@@ -1,12 +1,12 @@
 import React from 'react'
-import { Switch, BrowserRouter as Router, Route } from 'react-router-dom'
+import { Redirect, Switch, BrowserRouter as Router, Route } from 'react-router-dom'
 import NavBar from '../navBar'
 import Home from '../../pages/home';
 import Register from '../../pages/register';
 import Login from '../../pages/login';
 import Cookies from 'js-cookie';
 import { LOGOUT } from '../../redux/actions/logActions';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Profile from '../../pages/profile/index'
 import { LOGIN } from '../../redux/actions/logActions';
 import { UPDATE } from '../../redux/actions/logActions'
@@ -14,6 +14,7 @@ import { UPDATE } from '../../redux/actions/logActions'
 const App = () => {
 
     const dispatch = useDispatch()
+    const logged = useSelector(state => state.logged)
 
     const savedSession = () => {
         const cookie = Cookies.get();
@@ -48,6 +49,28 @@ const App = () => {
         Cookies.remove('token');
         window.location.reload(true)
     }
+
+    const PrivateRoute = ({ component: Component, ...rest }) => (
+      <Route {...rest} render={props => (
+        logged ? (
+          <Component {...props} />
+        ) : (
+          <Redirect to={{ pathname: '/login' }} />
+        )
+      )} />
+    );
+
+    const AlreadyLogged = ({ component: Component, ...rest }) => (
+      <Route {...rest} render={props => (
+        logged ? (
+          <Redirect to={{ pathname: '/' }} />
+          ) : (
+          <Component {...props} />
+        )
+      )} />
+    );
+
+console.log("Logged: ", logged)
     
   return (
      <Router>
@@ -56,15 +79,12 @@ const App = () => {
              <Route path="/" exact>
                  <Home savedSession={savedSession} />
              </Route>
-             <Route path="/register">
-                 <Register />
-             </Route>
-             <Route path="/login">
-                 <Login />
-             </Route>
-             <Route path="/profile">
-                 <Profile savedSession={savedSession} />
-             </Route>
+
+             <AlreadyLogged path="/register" component={Register} />
+             <AlreadyLogged path="/login" component={Login} />
+             <PrivateRoute  path="/profile" component={Profile} />
+                 
+
          </Switch>
      </Router>
   )

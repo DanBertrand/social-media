@@ -43,13 +43,14 @@ const Login = () => {
         dispatch(LOGIN());
         Cookies.set('token', response.jwt);
         setRedirect(true);
-
+        
         const userInfo = {
           id: response.user.id,
           username: response.user.username,
           email: response.user.email
         }
         dispatch(UPDATE(userInfo));
+        window.location.reload(true)
       }
       if(response.error){
         setErrors(response.message[0].messages[0].message);
