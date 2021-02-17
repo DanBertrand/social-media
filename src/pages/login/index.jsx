@@ -3,6 +3,7 @@ import { Link, Redirect } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import { useDispatch } from 'react-redux';
 import { LOGIN } from '../../redux/actions/logActions';
+import UPDATE from '../../redux/actions/userInfosAction'
 
 const Login = () => {
 
@@ -33,12 +34,20 @@ const Login = () => {
     .then((response) => {
       if (response.user && response.user.confirmed) {
 
-        // console.log("logIn Worked!");
-        // console.log('User ID: ', response.user.id);
+
         
         dispatch(LOGIN());
         Cookies.set('token', response.jwt);
         setRedirect(true);
+
+        const userInfo = {
+          id: response.user.id,
+          username: response.user.username,
+          email: response.user.email
+        }
+
+        dispatch(UPDATE(userInfo));
+
         
       }
       if(response.error){

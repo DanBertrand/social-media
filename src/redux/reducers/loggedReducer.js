@@ -1,14 +1,14 @@
 import {LOG_IN, LOG_OUT } from '../types/loggedTypes'
 
 const initialState = {
-  logged: false,
+  logged: false
 };
 
 
 export const loggedReducer = (state = initialState, action) => {
     const { type } = action
-    console.log("action: ", action)
-    console.log("state: ", state)
+    console.log("LOG ACTION: ", action)
+    console.log("LOG STATE: ", state)
     switch(type) {
       case LOG_IN:
         return {
@@ -17,7 +17,7 @@ export const loggedReducer = (state = initialState, action) => {
         };
       case LOG_OUT:
         return {
- 
+
             logged: false
         };
       default:

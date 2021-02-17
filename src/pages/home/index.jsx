@@ -6,21 +6,21 @@ import { LOGIN } from '../../redux/actions/logActions';
 import { LOGOUT } from '../../redux/actions/logActions';
  
 const Home = ( ) => {
-  const logged = useSelector(state => state.loggedReducer.logged);
+  const logged = useSelector(state => state.logged);
   const dispatch = useDispatch();
     
-  const savedSession = () => {
-    const cookie = Cookies.get();
-    console.log('Cookie: ', cookie)
+  // const savedSession = () => {
+  //   const cookie = Cookies.get();
+  //   console.log('Cookie: ', cookie)
 
-    if(cookie.token){
-      dispatch(LOGIN())
-    }
-    else{
-      dispatch(LOGOUT())
-    }
-  }
-  savedSession()
+  //   if(cookie.token){
+  //     dispatch(LOGIN())
+  //   }
+  //   else{
+  //     dispatch(LOGOUT())
+  //   }
+  // }
+  // savedSession()
 
     console.log("Logged: ", logged)
 

@@ -44,10 +44,10 @@ const Register = () => {
           email: response.user.email
         }
 
-        dispatch(UPDATE(userInfo));
-
+        
         Cookies.set('token', response.jwt);
         dispatch(LOGIN());
+        dispatch(UPDATE(userInfo));
         setRedirect(true)
       }
       if(response.error){
