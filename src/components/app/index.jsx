@@ -9,7 +9,8 @@ import { LOGOUT } from '../../redux/actions/logActions';
 import { useDispatch, useSelector } from 'react-redux';
 import Profile from '../../pages/profile/index'
 import { LOGIN } from '../../redux/actions/logActions';
-import { UPDATE } from '../../redux/actions/logActions'
+import { UPDATE } from '../../redux/actions/logActions';
+import User from '../../pages/user/index'
 
 const App = () => {
 
@@ -83,6 +84,7 @@ console.log("Logged: ", logged)
              <AlreadyLogged path="/register" component={Register} />
              <AlreadyLogged path="/login" component={Login} />
              <PrivateRoute  path="/profile" component={Profile} />
+             <Route  path="/user/:id" component={User} />
                  
 
          </Switch>
