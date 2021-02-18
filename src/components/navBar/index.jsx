@@ -1,5 +1,5 @@
-import React from 'react';
 import './styles.scss';
+import React from 'react';
 import { Link, useHistory } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import LogButton from '../logButton/logButton'
@@ -14,7 +14,7 @@ const NavBar = ( {handleLogOut} ) => {
   }
   return (
      <nav>
-         <Link to="/" ><h1>The SOcial Shit</h1></Link>
+         <Link to="/" ><h1>The Social Network</h1></Link>
          {logged && <p>Logged as {user.username}</p>}
          <LogButton handleLogOut={handleLogOut} />
          <button type="button" onClick={handleClick}>

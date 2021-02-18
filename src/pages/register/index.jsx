@@ -34,15 +34,12 @@ const Register = () => {
     .then((response) => response.json())
     .then((response) => {
       if (response.user && response.user.confirmed) {
-        console.log("Register Worked!", response)
-        console.log('User ID: ', response.user.id)
 
         const userInfo = {
           id: response.user.id,
           username: response.user.username,
           email: response.user.email
         }
-
         Cookies.set('token', response.jwt);
         dispatch(LOGIN());
         dispatch(UPDATE(userInfo));

@@ -8,14 +8,17 @@ import { sort } from './functions'
 const Home = () => {
 
   const cookie = Cookies.get();
-
   const userInfos = useSelector(state => state.userInfos);
   const logged = useSelector(state => state.logged)
 
-  const [postAction, setpostAction] = useState(0);
+  const [postAction, setPostAction] = useState(0);
   const [input, setInput] = useState('');
   const [postsList, setpostsList] = useState([]);
   const [errors, setErrors] = useState('');
+
+  const handleLikeChange = () => {
+    setPostAction(postAction + 1)
+  }
 
   const handleChange = (e) => {
     setErrors('')
@@ -23,7 +26,6 @@ const Home = () => {
   }
 
   const handleDelete = (id) => {
-    console.log("DELETE post : ", id);
     fetch(`http://localhost:1337/posts/${id}`, {
       method: 'DELETE',
       headers: {
@@ -42,9 +44,7 @@ const Home = () => {
       return
     }
     if(input.length > 3){
-
-      setpostAction(postAction + 1)
-
+      setPostAction(postAction + 1)
       const data = {
           text: input,
           user: userInfos.id
@@ -71,14 +71,15 @@ const Home = () => {
       })
   }
 
- useEffect(()=>{fetchList()}, [])
+  useEffect(()=>{fetchList()}, [postAction])
 
   return (
     <>
       <h2>Home</h2>
       <p>Welcome on My Social Network. This website is a training to Redux and React. We use auth and routing to create a small social media website.</p>
       <CreatePost handleSubmit={handleSubmit} handleChange={handleChange} errors={errors} />
-      {postsList.length && postsList.map(post => <Post key={post.id} post={post} handleDelete={handleDelete} />)}   
+      {postsList.length && <p>{`Found ${postsList.length} posts`}</p> }
+      {postsList.length && postsList.map(post => <Post key={post.id} post={post} handleDelete={handleDelete} handleLikeChange ={handleLikeChange} />)}   
    
     </>
   )

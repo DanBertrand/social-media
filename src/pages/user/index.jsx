@@ -19,9 +19,7 @@ const User = ( { match } ) => {
     })
       .then((response) => response.json())
       .then((response) => {
-        const { username, email  } = response;
-        console.log("RESPONSE: ", response)
-        setUser([username, email])
+        setUser([response.username, response.email])
       })
       fetch(`http://localhost:1337/posts?user.id=${userID}`, {
         method: 'get',
@@ -33,7 +31,6 @@ const User = ( { match } ) => {
         .then((response) => response.json())
         .then((response) => {
           setPosts(response)
-          
         })
       }
       
