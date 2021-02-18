@@ -71,8 +71,6 @@ const App = () => {
       )} />
     );
 
-console.log("Logged: ", logged)
-    
   return (
      <Router>
          <NavBar handleLogOut={handleLogOut} />

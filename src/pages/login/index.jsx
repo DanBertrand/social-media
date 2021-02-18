@@ -9,7 +9,6 @@ import LoginForm from '../../components/loginForm/index';
 const Login = () => {
   
   const dispatch = useDispatch();
-  
   const [identifier, setIdentifier] = useState('');
   const [password, setPassword] = useState('');
   const [redirect, setRedirect] = useState(false);
