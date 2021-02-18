@@ -12,7 +12,7 @@ const Home = () => {
   const userInfos = useSelector(state => state.userInfos);
   const logged = useSelector(state => state.logged)
 
-  const [newPost, setNewPost] = useState(0);
+  const [postAction, setpostAction] = useState(0);
   const [input, setInput] = useState('');
   const [postsList, setpostsList] = useState([]);
   const [errors, setErrors] = useState('');
@@ -32,9 +32,7 @@ const Home = () => {
       },
     })
     .then((response) => response.json())
-    .then((response) => {
-        console.log(response)
-    })
+    .then(() => {fetchList()})
   }
 
   const handleSubmit = (e) => {
@@ -45,7 +43,7 @@ const Home = () => {
     }
     if(input.length > 3){
 
-      setNewPost(newPost + 1)
+      setpostAction(postAction + 1)
 
       const data = {
           text: input,
@@ -58,7 +56,8 @@ const Home = () => {
           'Content-Type': 'application/json'
           },
           body: JSON.stringify(data)
-      });
+      })
+      .then( () =>{fetchList()})
       return
     }
     setErrors("Your post need at least 3 characters")
@@ -72,8 +71,7 @@ const Home = () => {
       })
   }
 
-  useEffect(()=>{fetchList()}, [newPost])
-  
+ useEffect(()=>{fetchList()}, [])
 
   return (
     <>
