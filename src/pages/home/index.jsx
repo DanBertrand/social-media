@@ -29,61 +29,60 @@ const Home = () => {
     fetch(`http://localhost:1337/posts/${id}`, {
       method: 'DELETE',
       headers: {
-      'Authorization': `Bearer ${cookie.token}`, 
-      'Content-Type': 'application/json'
+        'Authorization': `Bearer ${cookie.token}`,
+        'Content-Type': 'application/json'
       },
     })
-    .then((response) => response.json())
-    .then(() => {fetchList()})
+      .then((response) => response.json())
+      .then(() => { fetchList() })
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if(!logged){
+    if (!logged) {
       setErrors('Please register or log in before adding a post');
       return
     }
-    if(input.length > 3){
+    if (input.length > 3) {
       setPostAction(postAction + 1)
       const data = {
-          text: input,
-          user: userInfos.id
+        text: input,
+        user: userInfos.id
       };
       fetch('http://localhost:1337/posts', {
-          method: 'post',
-          headers: {
-          'Authorization': `Bearer ${cookie.token}`, 
+        method: 'post',
+        headers: {
+          'Authorization': `Bearer ${cookie.token}`,
           'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(data)
+        },
+        body: JSON.stringify(data)
       })
-      .then( () =>{fetchList()})
+        .then(() => { fetchList() })
       return
     }
     setErrors("Your post need at least 3 characters")
   }
 
   const fetchList = () => {
-    fetch('http://localhost:1337/posts', {method: 'get'})
+    fetch('http://localhost:1337/posts', { method: 'get' })
       .then((response) => response.json())
       .then((response) => {
         setpostsList(sort(response))
       })
   }
 
-  useEffect(()=>{fetchList()}, [postAction])
+  useEffect(() => { fetchList() }, [postAction])
 
   return (
     <>
       <h2>Home</h2>
       <p>Welcome on My Social Network. This website is a training to Redux and React. We use auth and routing to create a small social media website.</p>
       <CreatePost handleSubmit={handleSubmit} handleChange={handleChange} errors={errors} />
-      {postsList.length && <p>{`Found ${postsList.length} posts`}</p> }
-      {postsList.length && postsList.map(post => <Post key={post.id} post={post} handleDelete={handleDelete} handleLikeChange ={handleLikeChange} />)}   
-   
+      {postsList.length > 0 && <p>{`Found ${postsList.length} posts`}</p>}
+      {postsList.length > 0 && postsList.map(post => <Post key={post.id} post={post} handleDelete={handleDelete} handleLikeChange={handleLikeChange} />)}
+
     </>
   )
 }
- 
+
 export default Home
- 
