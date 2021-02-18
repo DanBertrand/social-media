@@ -6,10 +6,7 @@ const Post = ( { post, handleDelete } ) => {
   const logged = useSelector(state => state.logged)
   const user = useSelector(state => state.userInfos)
 
-
-
-  // console.log("POST, ", post)
-  // console.log("User ID, ", user.id)
+  console.log("LIKES", post.likes.length)
 
   return (
     <div>
@@ -18,9 +15,9 @@ const Post = ( { post, handleDelete } ) => {
           <>
         <Link to={`/user/${post.user.id}`} >
           <p>{post.user.username}</p>
-            <span>{post.like}</span> 
-            <button type="button" >Like</button>
             </Link>
+            <span>{post.likes.length}</span> 
+            <button type="button"  >Like</button>
             {post.user.id === user.id && <button type="button" onClick={e => {handleDelete(post.id)}} >Delete</button>}
           </>
         

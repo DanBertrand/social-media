@@ -48,7 +48,7 @@ const Home = () => {
       const data = {
           text: input,
           user: userInfos.id
-          };
+      };
       fetch('http://localhost:1337/posts', {
           method: 'post',
           headers: {
