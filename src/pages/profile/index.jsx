@@ -14,6 +14,8 @@ const Profile = () => {
 
   const updateProfile = (e) => {
     e.preventDefault();
+    
+    setErrors('')
     if(email.length < 5){setErrors('Email needs more than 4 characters'); return}
     if(username.length < 3){setErrors('Username needs more than 2 characters '); return}
     const data = {
@@ -37,7 +39,6 @@ const Profile = () => {
             return
           }
         }
-      console.log(response)
       setErrors('Profile Updated')
       setUpdating(false)
       setUpdated(true)
