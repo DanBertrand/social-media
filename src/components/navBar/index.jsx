@@ -1,6 +1,6 @@
 import React from 'react';
 import './styles.scss';
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import LogButton from '../logButton/logButton'
 
 const NavBar = ( {handleLogOut} ) => {
@@ -11,7 +11,7 @@ const NavBar = ( {handleLogOut} ) => {
   }
   return (
      <nav>
-         <h1>The SOcial Shit</h1>
+         <Link to="/" ><h1>The SOcial Shit</h1></Link>
          <LogButton handleLogOut={handleLogOut} />
          <button type="button" onClick={handleClick}>
       Profile

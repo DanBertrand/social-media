@@ -7,7 +7,7 @@ const Profil = () => {
   <>
      <h2>My Profil</h2>
      <p>ID: {userInfos.id}</p>
-     <p>User Name: {userInfos.username}</p>
+     <p>Username: {userInfos.username}</p>
      <p>Email: {userInfos.email}</p>
      </>
   )
