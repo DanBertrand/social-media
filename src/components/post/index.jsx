@@ -24,7 +24,6 @@ const Post = ({ post, handleDelete, handleLikeChange }) => {
       .then((response) => response.json())
       .then((response) => {
         previousLikes = response.likes;
-        console.log(previousLikes);
 
         const find = previousLikes.filter((userlike) => userlike.id === user.id);
 
