@@ -1,10 +1,10 @@
 const initialState = {
-    logged: false,
-    userInfos:{
-      id: '',
-      username:'',
-      email:''
-    }
-  };
+  logged: false,
+  userInfos: {
+    id: '',
+    username: '',
+    email: '',
+  },
+};
 
-export default initialState
+export default initialState;

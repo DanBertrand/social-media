@@ -1,18 +1,14 @@
 import React from 'react';
 
-const CreatePost = ( { handleSubmit, handleChange, errors } ) => {
+const CreatePost = ({ handleSubmit, handleChange, errors }) => (
+  <>
+    <h3>CreatePost</h3>
+    {errors && <p>{errors}</p>}
+    <form onSubmit={handleSubmit}>
+      <input type="text" onChange={(e) => handleChange(e.target.value)} />
+      <button type="submit">Post</button>
+    </form>
+  </>
+);
 
-  return (
-      <>
-        <h3>CreatePost</h3>
-        {errors && <p>{errors}</p>}
-        <form onSubmit={handleSubmit} >
-            <input type="text" onChange={e => handleChange(e.target.value)} ></input>
-            <button type="submit" >Post</button>
-        </form>
-      </>
-  )
-}
- 
-export default CreatePost
- 
+export default CreatePost;
